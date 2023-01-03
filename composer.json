@@ -1,0 +1,24 @@
+{
+	"name": "stefna/session",
+	"type": "library",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"license": "mit",
+	"authors": [
+		{
+			"name": "Andreas Sundqvist",
+			"email": "andreas@stefna.is"
+		}
+	],
+	"require": {
+		"php": "^8.0",
+		"psr/log": "^3.0",
+		"psr/http-server-middleware": "^1.0.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Stefna\\Session\\": "src/"
+		}
+	},
+	"description": ""
+}
