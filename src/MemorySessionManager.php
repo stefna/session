@@ -2,7 +2,7 @@
 
 namespace Stefna\Session;
 
-final class MemoryManager implements Manager
+final class MemorySessionManager implements SessionManager
 {
 	/** @var \ArrayAccess<string, mixed>|callable */
 	private $storage;
@@ -16,13 +16,13 @@ final class MemoryManager implements Manager
 		$this->storage = $storage;
 	}
 
-	public function getStorage(): Storage
+	public function getStorage(): SessionStorage
 	{
 		$loader = $this->storage instanceof \ArrayAccess ? fn () => clone $this->storage : $this->storage;
-		return new SessionStorage($loader);
+		return new ArraySessionStorage($loader);
 	}
 
-	public function save(Storage $storage): void
+	public function save(SessionStorage $storage): void
 	{
 		$changedKeys = $storage->getChangedKeys();
 		if (!$changedKeys) {

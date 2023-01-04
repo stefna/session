@@ -8,7 +8,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 use Stefna\Session\Flash\Messages;
-use Stefna\Session\Storage;
+use Stefna\Session\SessionStorage;
 
 final readonly class FlashMiddleware implements MiddlewareInterface
 {
@@ -18,8 +18,8 @@ final readonly class FlashMiddleware implements MiddlewareInterface
 
 	public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
 	{
-		$storage = $request->getAttribute(Storage::class);
-		if (!$storage instanceof Storage) {
+		$storage = $request->getAttribute(SessionStorage::class);
+		if (!$storage instanceof SessionStorage) {
 			$this->logger->warning('Can\'t setup flash messages because no session storages configured');
 			return $handler->handle($request);
 		}

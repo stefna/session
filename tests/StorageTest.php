@@ -3,13 +3,13 @@
 namespace Stefna\Session\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Stefna\Session\SessionStorage;
+use Stefna\Session\ArraySessionStorage;
 
 final class StorageTest extends TestCase
 {
 	public function testLazyLoadOfData(): void
 	{
-		$storage = new SessionStorage(fn () => $this->fail('Should never be called'));
+		$storage = new ArraySessionStorage(fn () => $this->fail('Should never be called'));
 
 		$this->assertEmpty($storage->getChangedKeys());
 	}
@@ -19,7 +19,7 @@ final class StorageTest extends TestCase
 		$testValue = 'random';
 		$testKey = 'test';
 		$data = new \ArrayObject([$testKey => $testValue]);
-		$storage = new SessionStorage(fn () => $data);
+		$storage = new ArraySessionStorage(fn () => $data);
 
 		$this->assertTrue($storage->has($testKey));
 		$this->assertSame($testValue, $storage->get($testKey));
@@ -29,7 +29,7 @@ final class StorageTest extends TestCase
 	{
 		$testKey = 'test';
 		$data = new \ArrayObject([$testKey => 'random']);
-		$storage = new SessionStorage(fn () => $data);
+		$storage = new ArraySessionStorage(fn () => $data);
 
 		$storage->remove($testKey);
 
@@ -42,7 +42,7 @@ final class StorageTest extends TestCase
 	{
 		$testKey = 'test';
 		$data = new \ArrayObject([$testKey => 'random']);
-		$storage = new SessionStorage(fn () => $data);
+		$storage = new ArraySessionStorage(fn () => $data);
 
 		try {
 			$storage->set($testKey, 1, false);
@@ -61,7 +61,7 @@ final class StorageTest extends TestCase
 		$newValue = 'testOverwritingData';
 		$testKey = 'test';
 		$data = new \ArrayObject([$testKey => 'random']);
-		$storage = new SessionStorage(fn () => $data);
+		$storage = new ArraySessionStorage(fn () => $data);
 
 		$storage->set($testKey, $newValue);
 

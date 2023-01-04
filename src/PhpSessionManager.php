@@ -2,7 +2,7 @@
 
 namespace Stefna\Session;
 
-final class PhpSessionManager implements Manager
+final class PhpSessionManager implements SessionManager
 {
 	private function start(): void
 	{
@@ -20,16 +20,16 @@ final class PhpSessionManager implements Manager
 		};
 	}
 
-	public function getStorage(): Storage
+	public function getStorage(): SessionStorage
 	{
-		return new SessionStorage($this->getLoader());
+		return new ArraySessionStorage($this->getLoader());
 	}
 
-	public function save(Storage $storage): void
+	public function save(SessionStorage $storage): void
 	{
 		$changedKeys = $storage->getChangedKeys();
 		if (!$changedKeys) {
-			return ;
+			return;
 		}
 
 		foreach ($changedKeys as $key) {

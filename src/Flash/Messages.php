@@ -2,7 +2,7 @@
 
 namespace Stefna\Session\Flash;
 
-use Stefna\Session\Storage;
+use Stefna\Session\SessionStorage;
 
 final class Messages
 {
@@ -15,7 +15,7 @@ final class Messages
 	private array $reset;
 
 	public function __construct(
-		private readonly Storage $storage,
+		private readonly SessionStorage $storage,
 	) {}
 
 	public function addMessage(Message $message): void

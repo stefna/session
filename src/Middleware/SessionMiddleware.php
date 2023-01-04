@@ -6,19 +6,19 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Stefna\Session\Manager;
-use Stefna\Session\Storage;
+use Stefna\Session\SessionManager;
+use Stefna\Session\SessionStorage;
 
 final readonly class SessionMiddleware implements MiddlewareInterface
 {
 	public function __construct(
-		private Manager $manager,
+		private SessionManager $manager,
 	) {}
 
 	public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
 	{
 		$storage = $this->manager->getStorage();
-		$response = $handler->handle($request->withAttribute(Storage::class, $storage));
+		$response = $handler->handle($request->withAttribute(SessionStorage::class, $storage));
 		if ($storage->getChangedKeys()) {
 			$this->manager->save($storage);
 		}

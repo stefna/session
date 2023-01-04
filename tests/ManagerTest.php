@@ -3,9 +3,9 @@
 namespace Stefna\Session\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Stefna\Session\MemoryManager;
+use Stefna\Session\MemorySessionManager;
+use Stefna\Session\ArraySessionStorage;
 use Stefna\Session\SessionStorage;
-use Stefna\Session\Storage;
 
 final class ManagerTest extends TestCase
 {
@@ -16,7 +16,7 @@ final class ManagerTest extends TestCase
 		$data = new \ArrayObject([
 			$testKey => $testValue,
 		]);
-		$manager = new MemoryManager($data);
+		$manager = new MemorySessionManager($data);
 
 		$storage = $manager->getStorage();
 
@@ -35,7 +35,7 @@ final class ManagerTest extends TestCase
 		$data = new \ArrayObject([
 			$testKey => $testValue,
 		]);
-		$manager = new MemoryManager($data);
+		$manager = new MemorySessionManager($data);
 
 		$storage = $manager->getStorage();
 		$storage->set($testKey, 2);
@@ -55,7 +55,7 @@ final class ManagerTest extends TestCase
 			$testKey => $testValue,
 			$deleteKey => $testValue,
 		]);
-		$manager = new MemoryManager($data);
+		$manager = new MemorySessionManager($data);
 
 		$storage = $manager->getStorage();
 		$storage->set($testKey, 2);
@@ -71,7 +71,7 @@ final class ManagerTest extends TestCase
 
 	public function testHappyPathForSaving(): void
 	{
-		$manager = new MemoryManager(fn () => $this->fail('Shouldn\'t be called'));
+		$manager = new MemorySessionManager(fn () => $this->fail('Shouldn\'t be called'));
 		$storage = $manager->getStorage();
 
 		$this->assertEmpty($storage->getChangedKeys());
