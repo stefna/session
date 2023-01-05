@@ -4,22 +4,6 @@ namespace Stefna\Session;
 
 final class PhpSessionManager implements SessionManager
 {
-	private function start(): void
-	{
-		session_start();
-	}
-
-	private function getLoader(): callable
-	{
-		return function () {
-			if (session_status() !== PHP_SESSION_ACTIVE) {
-				$this->start();
-			}
-			// wrap session in array object so to not modify _SESSION
-			return new \ArrayObject($_SESSION);
-		};
-	}
-
 	public function getStorage(): SessionStorage
 	{
 		return new ArraySessionStorage($this->getLoader());
@@ -40,5 +24,21 @@ final class PhpSessionManager implements SessionManager
 				$_SESSION[$key] = $storage->get($key);
 			}
 		}
+	}
+
+	private function start(): void
+	{
+		session_start();
+	}
+
+	private function getLoader(): callable
+	{
+		return function () {
+			if (session_status() !== PHP_SESSION_ACTIVE) {
+				$this->start();
+			}
+			// wrap session in array object so to not modify _SESSION
+			return new \ArrayObject($_SESSION);
+		};
 	}
 }

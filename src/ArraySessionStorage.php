@@ -23,17 +23,6 @@ final class ArraySessionStorage implements SessionStorage
 		$this->loader = $loader;
 	}
 
-	/**
-	 * @return array<string, mixed>|\ArrayAccess<string, mixed>
-	 */
-	private function getAllData(): array|\ArrayAccess
-	{
-		if (!isset($this->data)) {
-			$this->data = ($this->loader)();
-		}
-		return $this->data;
-	}
-
 	public function get(string $key, mixed $default = null): mixed
 	{
 		$data = $this->getAllData();
@@ -82,5 +71,16 @@ final class ArraySessionStorage implements SessionStorage
 	public function getChangedKeys(): array
 	{
 		return $this->changedKeys;
+	}
+
+	/**
+	 * @return array<string, mixed>|\ArrayAccess<string, mixed>
+	 */
+	private function getAllData(): array|\ArrayAccess
+	{
+		if (!isset($this->data)) {
+			$this->data = ($this->loader)();
+		}
+		return $this->data;
 	}
 }

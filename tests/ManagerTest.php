@@ -4,8 +4,6 @@ namespace Stefna\Session\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Stefna\Session\MemorySessionManager;
-use Stefna\Session\ArraySessionStorage;
-use Stefna\Session\SessionStorage;
 
 final class ManagerTest extends TestCase
 {
