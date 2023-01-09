@@ -33,6 +33,9 @@ final readonly class FlashMiddleware implements MiddlewareInterface
 		if (count($flashMessages)) {
 			$storage->set(self::STORAGE_KEY, $flashMessages);
 		}
+		else {
+			$storage->remove(self::STORAGE_KEY);
+		}
 
 		return $response;
 	}
