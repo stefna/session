@@ -2,7 +2,7 @@
 
 namespace Stefna\Session\Flash;
 
-final readonly class Message
+final readonly class FlashMessage
 {
 	/**
 	 * @param array{message: string, code: string, type: string} $data
@@ -11,15 +11,15 @@ final readonly class Message
 	{
 		return new self(
 			$data['message'],
-			Code::tryFrom($data['code']) ?? Code::Notice,
-			Type::tryFrom($data['type']) ?? Type::Normal,
+			FlashCode::tryFrom($data['code']) ?? FlashCode::Notice,
+			MessageType::tryFrom($data['type']) ?? MessageType::Normal,
 		);
 	}
 
 	public function __construct(
 		public string $message,
-		public Code $code = Code::Notice,
-		public Type $type = Type::Normal,
+		public FlashCode $code = FlashCode::Notice,
+		public MessageType $type = MessageType::Normal,
 	) {}
 
 	/**

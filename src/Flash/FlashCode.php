@@ -2,7 +2,7 @@
 
 namespace Stefna\Session\Flash;
 
-enum Code: string
+enum FlashCode: string
 {
 	case Notice = 'notice';
 	case Success = 'success';
