@@ -25,18 +25,18 @@ final class ArraySessionStorage implements SessionStorage
 
 	public function get(string $key, mixed $default = null): mixed
 	{
-		$data = $this->getAllData();
-		return $data[$key] ?? $default;
+		return $this->getRawValue($key) ?? $default;
 	}
 
 	public function has(string $key): bool
 	{
-		return isset($this->getAllData()[$key]);
+		$this->getRawValue($key);
+		return isset($this->data[$key]);
 	}
 
 	public function set(string $key, mixed $value, bool $overwrite = true): void
 	{
-		$this->getAllData();
+		$this->getRawValue($key);
 		if (!$overwrite && isset($this->data[$key])) {
 			throw new \BadMethodCallException('Can\'t overwrite existing value');
 		}
@@ -46,7 +46,7 @@ final class ArraySessionStorage implements SessionStorage
 
 	public function remove(string $key): void
 	{
-		$this->getAllData();
+		$this->getRawValue($key);
 		unset($this->data[$key]);
 		$this->changedKeys[] = $key;
 	}
@@ -57,7 +57,7 @@ final class ArraySessionStorage implements SessionStorage
 	 */
 	public function getArray(string $key, array $default = []): array
 	{
-		$value = $this->getAllData()[$key] ?? $default;
+		$value = $this->getRawValue($key) ?? $default;
 		if (!is_array($value)) {
 			return $default;
 		}
@@ -73,14 +73,11 @@ final class ArraySessionStorage implements SessionStorage
 		return $this->changedKeys;
 	}
 
-	/**
-	 * @return array<string, mixed>|\ArrayAccess<string, mixed>
-	 */
-	private function getAllData(): array|\ArrayAccess
+	public function getRawValue(string $key): mixed
 	{
 		if (!isset($this->data)) {
 			$this->data = ($this->loader)();
 		}
-		return $this->data;
+		return isset($this->data[$key]) ? $this->data[$key]->value : null;
 	}
 }
