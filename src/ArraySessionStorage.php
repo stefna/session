@@ -78,6 +78,7 @@ final class ArraySessionStorage implements SessionStorage
 		if (!isset($this->data)) {
 			$this->data = ($this->loader)();
 		}
-		return isset($this->data[$key]) ? $this->data[$key]->value : null;
+
+		return isset($this->data[$key]) ? $this->data[$key] : null;
 	}
 }
