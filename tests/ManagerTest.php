@@ -11,6 +11,7 @@ final class ManagerTest extends TestCase
 	{
 		$testValue = 1;
 		$testKey = 'test';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([
 			$testKey => $testValue,
 		]);
@@ -30,6 +31,7 @@ final class ManagerTest extends TestCase
 		$testValue = 1;
 		$testKey = 'test';
 		$newKey = 'newKey';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([
 			$testKey => $testValue,
 		]);
@@ -49,6 +51,7 @@ final class ManagerTest extends TestCase
 		$testKey = 'test';
 		$newKey = 'newKey';
 		$deleteKey = 'deleteKey';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([
 			$testKey => $testValue,
 			$deleteKey => $testValue,

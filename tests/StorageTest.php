@@ -18,6 +18,7 @@ final class StorageTest extends TestCase
 	{
 		$testValue = 'random';
 		$testKey = 'test';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([$testKey => $testValue]);
 		$storage = new ArraySessionStorage(fn () => $data);
 
@@ -28,6 +29,7 @@ final class StorageTest extends TestCase
 	public function testRemoveFromStorage(): void
 	{
 		$testKey = 'test';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([$testKey => 'random']);
 		$storage = new ArraySessionStorage(fn () => $data);
 
@@ -41,6 +43,7 @@ final class StorageTest extends TestCase
 	public function testPreventingOverwritingData(): void
 	{
 		$testKey = 'test';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([$testKey => 'random']);
 		$storage = new ArraySessionStorage(fn () => $data);
 
@@ -60,6 +63,7 @@ final class StorageTest extends TestCase
 	{
 		$newValue = 'testOverwritingData';
 		$testKey = 'test';
+		/** @var \ArrayObject<string, mixed> $data */
 		$data = new \ArrayObject([$testKey => 'random']);
 		$storage = new ArraySessionStorage(fn () => $data);
 
