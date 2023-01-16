@@ -1,5 +1,6 @@
 {
 	"name": "stefna/session",
+	"description": "Session management for psr7/psr15",
 	"type": "library",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -13,12 +14,32 @@
 	"require": {
 		"php": "^8.0",
 		"psr/log": "^3.0",
-		"psr/http-server-middleware": "^1.0.1"
+		"psr/http-server-middleware": "^1.0.1",
+		"stefna/ds-collection": "dev-main"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "dev-master",
+		"stefna/codestyle": "^1.12",
+		"phpstan/phpstan": "^1.8",
+		"bnf/phpstan-psr-container": "^1.0",
+		"phpunit/phpunit": "^9.5.25",
+		"phpstan/phpstan-phpunit": "^1.1",
+		"tomasvotruba/type-coverage": "^0.0.7",
+		"phpstan/extension-installer": "^1.2"
 	},
 	"autoload": {
 		"psr-4": {
 			"Stefna\\Session\\": "src/"
 		}
 	},
-	"description": ""
+	"autoload-dev": {
+		"psr-4": {
+			"Stefna\\Session\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"phpstan/extension-installer": true
+		}
+	}
 }
