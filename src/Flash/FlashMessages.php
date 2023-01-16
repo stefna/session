@@ -9,6 +9,8 @@ use Stefna\Collection\AbstractListCollection;
  */
 final class FlashMessages extends AbstractListCollection
 {
+	protected static string $defaultCollectionType = FlashMessage::class;
+
 	/** @var MessageType[] */
 	private array $reset;
 	/** @var callable(): array<mixed> */
@@ -19,7 +21,7 @@ final class FlashMessages extends AbstractListCollection
 	 */
 	public function __construct(callable $loader)
 	{
-		parent::__construct(FlashMessage::class);
+		parent::__construct();
 		$this->loader = $loader;
 	}
 
