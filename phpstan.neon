@@ -7,3 +7,5 @@ parameters:
 		param_type: 100
 		property_type: 100
 		print_suggestions: true
+includes:
+	- phpstan-baseline.neon

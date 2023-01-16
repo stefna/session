@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Return type \\(array\\<array\\{message\\: string, code\\: string, type\\: string\\}\\>\\) of method Stefna\\\\Session\\\\Flash\\\\FlashMessages\\:\\:toArray\\(\\) should be compatible with return type \\(array\\<Stefna\\\\Session\\\\Flash\\\\FlashMessage\\>\\) of method Stefna\\\\Collection\\\\AbstractListCollection\\<Stefna\\\\Session\\\\Flash\\\\FlashMessage\\>\\:\\:toArray\\(\\)$#"
+			count: 1
+			path: src/Flash/FlashMessages.php
+
+		-
+			message: "#^Return type \\(array\\<array\\{message\\: string, code\\: string, type\\: string\\}\\>\\) of method Stefna\\\\Session\\\\Flash\\\\FlashMessages\\:\\:toArray\\(\\) should be compatible with return type \\(array\\<Stefna\\\\Session\\\\Flash\\\\FlashMessage\\>\\) of method Stefna\\\\Collection\\\\Collection\\<Stefna\\\\Session\\\\Flash\\\\FlashMessage\\>\\:\\:toArray\\(\\)$#"
+			count: 2
+			path: src/Flash/FlashMessages.php
