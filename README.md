@@ -1,5 +1,9 @@
 # Sessions for psr-15 and psr-7
 
+[![Build Status](https://github.com/stefna/session/actions/workflows/continuous-integration.yml/badge.svg?branch=main)](https://github.com/stefna/session/actions/workflows/continuous-integration.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/stefna/session.svg)](https://packagist.org/packages/stefna/session)
+[![Software License](https://img.shields.io/github/license/stefna/session.svg)](LICENSE)
+
 The package helps in working with sessions in a PSR-7/PSR-15 environment.
 
 It also provides a flash message service which helps use one-time messages.
