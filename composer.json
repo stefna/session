@@ -15,7 +15,7 @@
 		"php": "^8.2",
 		"psr/log": "^3.0",
 		"psr/http-server-middleware": "^1.0.1",
-		"stefna/ds-collection": "dev-main"
+		"stefna/ds-collection": "^1.0"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "dev-master",
